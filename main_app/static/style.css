@@ -1,0 +1,14 @@
+h1 {
+  color: green;
+}
+
+.navbar img {
+  height: 100px;
+}
+
+/*.treasure-photo img {
+  float: left;
+  height: 100px;
+  top: 50%;
+  transform: translateY(50%);
+}*/

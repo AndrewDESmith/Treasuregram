@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!-- Repeated code for Navbar -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>TreasureGram</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top text-center">
+      <a href="/">
+        <img src="{% static 'images/Treasure-Chest.png' %}" alt="TreasureGram logo">
+      </a>
+      {% if user.is_authenticated %}
+        <!-- The URL template tag allows use of the URL's name ('profile') defined in urls.py, so that changes to links can be confined to urls.py in place of harcoding them in the templates -->
+        <!-- Format of a URL template tag => {# url 'name' parameters #} -->
+        <!-- Here, user.username is a paramter required by the 'profile' URL, in order to get '/user/username' -->
+        <a class="navbar-text navbar-right" href="{% url 'profile' user.username %}">{{ user.username }}</a>
+        <a class="navbar-text navbar-right" href="{% url 'logout' %}">logout</a>
+      {% else %}
+        <a class="navbar-text navbar-right" href="{% url 'login' %}">login</a>
+      {% endif %}
+    </nav>
+
+    <main class="container container--mw700">
+      <!-- All code in the base.html file outside of the block tags is boilerplate that will be repeated in all html files. -->
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>
+
+<!-- Repeated code for Footer -->

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <!-- The code specific to the detail page is in between the block tags. -->
+  <div class="treasure panel panel-default">
+    <div class="panel-heading">
+      <!-- The Treasure object is passed in using the detail function in views.py, which is why we can access its instance here: -->
+      <h3 class="panel-title">{{ treasure.name }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="treasure-photo-detail">
+        <img src="{{ treasure.image.url }}" alt="">
+      </div>
+      <p>{{ treasure.value }}</p>
+      <p>{{ treasure.location }}</p>
+    </div>
+  </div>
+{% endblock %}

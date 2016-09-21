@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <!-- The code specific to the index page is in between the block tags. -->
+  <div class="row">
+    {% for treasure in treasures %}
+      <div class="col-md-4">
+        <div class="treasure panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">{{ treasure.name }}</h2>
+            <a href="/user/{{ treasure.user.username }}" class="panel-username">
+              by: {{ treasure.user.username }}
+            </a>
+          </div>
+
+          <div class="panel-body">
+            <a href="/{{ treasure.id }}/"></a>
+              <div class="treasure-photo">
+                <img src="{{ treasure.image.url }}" alt="Treasure Image" height="100">
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- Create a new row for every three treasures, to prevent overflow of columns containing images of different heights: -->
+      {% if forloop.counter|divisibleby:"3" %}
+        </div><div class="row">
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="treasure panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add Treasure</h3>
+    </div>
+    <div class="panel-body">
+    <!-- Display the form, POSTing data to our post_url: -->
+    <!-- The enctype attribute specifies how the form-data should be encoded when submitting it to the server. Specifying this attribute is required when submitting files to the server.  -->
+      <form enctype="multipart/form-data" action="post_url/" method='post'>
+        <!-- A token that protects against CSRF(cross-site request forgery) attacks: -->
+        {% csrf_token %}
+        <div class="field-wrapper">
+          <!-- .as_p formats like an HTML paragraph and displays each form input on a new line: -->
+          {{ form.as_p }}
+        </div>
+        <input type="submit" value='Submit'>
+      </form>
+    </div>
+  </div>
+{% endblock %}
