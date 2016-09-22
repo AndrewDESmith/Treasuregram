@@ -73,7 +73,7 @@ def logout_view(request):
 
 def like_treasure(request):
     # Get the treasure_id from the AJAX request:
-    treasure_id = request.GET.get('treasure_id', None)
+    treasure_id = request.POST.get('treasure_id', None)
 
     likes = 0
     # Check that the treasure_id was received from the GET request:
