@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^user/(\w+)/$', views.profile, name = 'profile'),
     url(r'^login/$', views.login_view, name = 'login'),
     url(r'^logout/$', views.logout_view, name = 'logout'),
+    url(r'^like_treasure/$', views.like_treasure, name = 'like_treasure'),
 ]
 
 # The URL pattern below allows us to serve files (other than static files) in development (indicated by .DEBUG).

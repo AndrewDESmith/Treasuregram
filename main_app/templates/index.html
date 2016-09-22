@@ -20,6 +20,11 @@
                 <img src="{{ treasure.image.url }}" alt="Treasure Image" height="100">
               </div>
             </a>
+
+            <button id="likes" data-id="{{ treasure.id }}" class="btn btn-mini btn-danger glyphicon glyphicon-heart" type="button">
+              {% if treasure.likes > 0 %} {{ treasure.likes }} {% endif %}
+            </button>
+
           </div>
 
         </div>

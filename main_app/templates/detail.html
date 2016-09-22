@@ -12,6 +12,11 @@
       <div class="treasure-photo-detail">
         <img src="{{ treasure.image.url }}" alt="">
       </div>
+
+      <button id="likes" data-id="{{ treasure.id }}" class="btn btn-mini btn-danger glyphicon glyphicon-heart" type="button">
+        {% if treasure.likes > 0 %} {{ treasure.likes }}  {% endif %}
+      </button>
+
       <p>{{ treasure.value }}</p>
       <p>{{ treasure.location }}</p>
     </div>

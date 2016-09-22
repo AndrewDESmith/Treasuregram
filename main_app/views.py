@@ -70,3 +70,21 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def like_treasure(request):
+    # Get the treasure_id from the AJAX request:
+    treasure_id = request.GET.get('treasure_id', None)
+
+    likes = 0
+    # Check that the treasure_id was received from the GET request:
+    if (treasure_id):
+        # Look up the treasure that corresponds to the submitted id:
+        treasure = Treasure.objects.get(id=int(treasure_id))
+        if treasure is not None:
+            # Increment the existing number of likes, and update the likes attribute for the treasure:
+            likes = treasure.likes + 1
+            treasure.likes = likes
+            treasure.save()
+
+    # Return the updated likes value back to the AJAX:
+    return HttpResponse(likes)
